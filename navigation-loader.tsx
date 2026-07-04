@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default function NavigationLoader() {
   const [isNavigating, setIsNavigating] = React.useState(false);
@@ -85,7 +86,7 @@ export default function NavigationLoader() {
 
   if (!isNavigating) return null;
 
-  return <Loader progress={ungaBungaProgress} />;
+  return ReactDOM.createPortal(<Loader progress={ungaBungaProgress} />, document.body);
 }
 
 function Loader({ progress }: { progress: number }) {
